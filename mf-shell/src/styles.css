@@ -1,0 +1,361 @@
+/* Reset y base */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #d1defa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Layout general con grid */
+.layout {
+    display: grid;
+    grid-template-areas:
+        "header header header header"
+        "content content content lateral"
+        "footer footer footer footer";
+    grid-template-rows: 80px 1fr 50px;
+    grid-template-columns: 1fr 1fr 1fr 300px;
+    height: 100vh;
+    gap: 10px;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    grid-area: header;
+    background: linear-gradient(90deg, #03228f 10%, #0e73e4 100%);
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    box-shadow: 0 2px 5px rgba(3, 34, 143, 0.4);
+}
+
+/* Navegación */
+.nav {
+    grid-area: nav;
+    background: #0e73e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(3, 34, 143, 0.4);
+}
+
+/* Contenido principal */
+.content {
+    grid-area: content;
+    background: #f6f7f9;
+    padding: 15px;
+    overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 8px #03228f33;
+}
+
+/* Barra lateral */
+.lateral {
+    grid-area: lateral;
+    background: #f6f7f9;
+    border-left: 2px solid #ddd;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 8px #03228f33;
+    overflow-y: auto;
+}
+
+/* Pie de página */
+.footer {
+    grid-area: footer;
+    background: #d1defa;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    color: #03228f;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 -2px 5px rgba(3, 34, 143, 0.2);
+}
+
+/* Scrollbar personalizados para content y lateral */
+.content::-webkit-scrollbar,
+.lateral::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content::-webkit-scrollbar-track,
+.lateral::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.content::-webkit-scrollbar-thumb,
+.lateral::-webkit-scrollbar-thumb {
+    background: #03228f;
+    border-radius: 10px;
+}
+
+.content::-webkit-scrollbar-thumb:hover,
+.lateral::-webkit-scrollbar-thumb:hover {
+    background: #0e73e4;
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+    .layout {
+        grid-template-areas:
+            "header"
+            "nav"
+            "content"
+            "lateral"
+            "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: 80px 60px 1fr 1fr 50px;
+    }
+
+    .lateral {
+        border-left: none;
+        border-top: 2px solid #ddd;
+    }
+}
+
+
+
+/* Lista de personajes */
+.personajes-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Card individual */
+.personaje-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px #0e73e455;
+    padding: 15px;
+    width: 220px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.personaje-card:hover,
+.personaje-card:focus {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px #03228fbb;
+}
+
+/* Imagen del personaje */
+.personaje-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    user-select: none;
+}
+
+/* Nombre */
+.personaje-name {
+    color: #03228f;
+    margin: 10px 0 5px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* Información */
+.personaje-info {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 2px 0;
+    text-align: center;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .personajes-filtros {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filtro-input,
+    .filtro-select {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .personaje-card {
+        width: 90%;
+    }
+}
+/* Contenedor del detalle */
+.detalle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #03228f;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Botón cerrar */
+.detalle-close-button {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 1.5rem; /* un poco más pequeño */
+  color: #03228f;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.detalle-close-button:hover {
+  color: #0e73e4;
+}
+
+/* Título del detalle */
+.detalle-title {
+  margin: 0 0 12px 0;
+  font-weight: 700;
+  font-size: 1.4rem; /* reducido para no sobresalir mucho */
+  font-style: italic;
+  line-height: 1.2;
+}
+
+/* Imagen */
+.detalle-image {
+  width: 100%;
+  max-width: 220px; /* un poco más pequeño */
+  border-radius: 10px;
+  box-shadow: 0 0 8px #0e73e4aa;
+  margin-bottom: 15px;
+  user-select: none;
+}
+
+/* Texto de info */
+.detalle-container p {
+  margin: 4px 0; /* menos espacio vertical */
+  font-size: 0.9rem; /* tamaño más pequeño y legible */
+  font-weight: 600;
+}
+
+.detalle-container p span {
+  font-weight: normal;
+  color: #555;
+}
+
+/* Episodios */
+h3 {
+  margin-top: 16px;
+  margin-bottom: 6px;
+  color: #03228f;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Lista de episodios */
+.detalle-episode-list {
+  list-style: none;
+  padding-left: 0;
+  max-height: 140px;
+  overflow-y: auto;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 8px 0;
+}
+
+.detalle-episode-item {
+  padding: 5px 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.85rem;
+  color: #454545;
+}
+
+/* Estados loading y error */
+.detalle-loading,
+.detalle-error {
+  font-style: italic;
+  font-weight: 600;
+  margin: 16px 0;
+  color: #03228f;
+  text-align: center;
+}
+
+.detalle-error {
+  color: #9b0202;
+}
+
+/* Estilo para los filtros */
+.personajes-filtros {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+/* Inputs y select comparten estilos base */
+.filtro-input,
+.filtro-select {
+  padding: 8px 12px;
+  border: 2px solid #03228f;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #03228f;
+  background-color: white;
+  transition: border-color 0.3s ease;
+  min-width: 180px;
+  max-width: 300px;
+}
+
+/* Cambia el borde y sombra al enfocar */
+.filtro-input:focus,
+.filtro-select:focus {
+  outline: none;
+  border-color: #0e73e4;
+  box-shadow: 0 0 8px #0e73e4aa;
+  background-color: #f6f7f9;
+  color: #03228f;
+  transition: all 0.3s ease;
+}
+
+/* Para que el select tenga una flecha personalizada (opcional) */
+.filtro-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%2303228f' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+  cursor: pointer;
+}
+
+/* Cambia el cursor y sombra en hover para select */
+.filtro-select:hover {
+  border-color: #0e73e4;
+  box-shadow: 0 0 6px #0e73e4bb;
+}
+
+.personajes-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #03228f;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-style: italic;
+}
