@@ -35,3 +35,6 @@ npm start
 # Construir y levantar todos los microfrontends con docker-compose desde la raiz
 docker-compose up --build
 
+# El proyecto es visible a travez del puerto:
+http://localhost:5003/
+
